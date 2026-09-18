@@ -154,6 +154,20 @@ const Sidebar = ({ isPinned, setIsPinned }) => {
           isExpanded={isExpanded}
         />
 
+        {/* Item estático: Balance Score Card */}
+        <MenuItem
+          key="balance-score-card"
+          item={{
+            idMenu: -2, // ID especial, mismo patrón que el item Home
+            MenuName: "Balance Score Card",
+            MenuIcon: "Assessment",
+            FullPath: "/balance-score-card",
+            SortOrder: 1,
+            children: [],
+          }}
+          isExpanded={isExpanded}
+        />
+
         {/* Items dinámicos del menú */}
         {menu.map((item) => (
           <MenuItem key={item.idMenu} item={item} isExpanded={isExpanded} />

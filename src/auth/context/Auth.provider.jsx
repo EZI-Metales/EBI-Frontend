@@ -4,11 +4,18 @@ import { AuthContext } from "./Auth.context";
 import { authService } from "../services/auth.service";
 import { storage } from "../utils/storage";
 
+// Modo mock del Balance Score Card (VITE_SCORECARD_MOCK=1): no hay backend disponible
+// para autenticar, así que se simula una sesión ya válida con un usuario ficticio para
+// poder navegar y probar la pantalla. Cambio acotado detrás de la bandera; el login
+// real (authService) sigue intacto para cuando sí hay backend. Ver README.md.
+const isMockMode = import.meta.env.VITE_SCORECARD_MOCK === "1";
+const MOCK_USER = { idUsuario: 0, Nombre: "Modo demostración" };
+
 export const AuthProvider = ({ children }) => {
-  // Inicializar con datos de storage si existen
-  const [user, setUser] = useState(() => storage.getUser());
-  const [isAuthenticated, setIsAuthenticated] = useState(() => !!storage.getUser());
-  const [loading, setLoading] = useState(true);
+  // Inicializar con datos de storage si existen (o con el usuario ficticio en modo mock)
+  const [user, setUser] = useState(() => (isMockMode ? MOCK_USER : storage.getUser()));
+  const [isAuthenticated, setIsAuthenticated] = useState(() => isMockMode || !!storage.getUser());
+  const [loading, setLoading] = useState(!isMockMode);
   const [errors, setErrors] = useState([]);
   const [menu, setMenu] = useState([]);
   const navigate = useNavigate();
@@ -52,6 +59,15 @@ export const AuthProvider = ({ children }) => {
 
   // Verificar autenticación al iniciar/refrescar
   useEffect(() => {
+    if (isMockMode) {
+      // Sesión simulada: no hay backend que validar ni menú que pedir.
+      setUser(MOCK_USER);
+      setIsAuthenticated(true);
+      setMenu([]);
+      setLoading(false);
+      return;
+    }
+
     const validateAuth = async () => {
       try {
         setLoading(true);
@@ -96,6 +112,8 @@ export const AuthProvider = ({ children }) => {
 
   // Cargar menú cuando el usuario está autenticado
   useEffect(() => {
+    if (isMockMode) return; // menú vacío fijo en modo mock, no hay backend que preguntar
+
     const loadMenu = async () => {
       if (isAuthenticated && user && menu.length === 0) {
         try {
