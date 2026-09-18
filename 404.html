@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
-    <meta charset="utf-8">
-    <title>Redirecting...</title>
+    <meta charset="utf-8" />
+    <title>El portal EBI se mudó</title>
+    <link rel="canonical" href="https://ezi-metales.github.io/ebi/" />
     <script>
-      // GitHub Pages SPA redirect hack
-      // Toma la URL actual y la convierte en una URL con hash
-      // Ejemplo: /login -> /#/login
-      var pathSegmentsToKeep = 1; // Para /EBI-Frontend/
-      
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, pathSegmentsToKeep + 1).join('/') +
-        '/#' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+      // El portal vive ahora en /ebi/ (repo EZI-Metales/ebi, plan ebi-portal,
+      // decision P-6 del 2026-09-18). Se conserva el hash y el query, para que
+      // un enlace profundo --/EBI-Frontend/#/balance-score-card-- siga llevando
+      // a donde llevaba.
+      (function () {
+        var l = window.location;
+        l.replace("https://ezi-metales.github.io/ebi/" + l.search + l.hash);
+      })();
     </script>
+    <meta http-equiv="refresh" content="3;url=https://ezi-metales.github.io/ebi/" />
+    <style>
+      body { font-family: Montserrat, system-ui, sans-serif; background: #f4f4f4;
+             color: #373a36; display: grid; place-items: center; height: 100vh; margin: 0; }
+      main { text-align: center; max-width: 34rem; padding: 2rem; }
+      a { color: #ff5c35; font-weight: 600; }
+    </style>
   </head>
   <body>
+    <main>
+      <h1>El portal EBI se mudó</h1>
+      <p>Ahora vive en <a href="https://ezi-metales.github.io/ebi/">ezi-metales.github.io/ebi</a>.
+         Si no te lleva solo en un segundo, entra por ese enlace y actualiza tu marcador.</p>
+    </main>
   </body>
 </html>
