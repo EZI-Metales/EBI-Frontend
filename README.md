@@ -1,3 +1,25 @@
+> # 📦 Repositorio archivado — el portal vive ahora en `EZI-Metales/ebi`
+>
+> **Archivado el 2026-09-18.** Este código se mudó a
+> [`EZI-Metales/ebi`](https://github.com/EZI-Metales/ebi), en `apps/portal/`, junto a las
+> migraciones de la base y al backend que lo alimenta. La mudanza se hizo con
+> `git subtree`, así que **los 11 commits de este repo se conservan allá**.
+>
+> - **El sitio en vivo es <https://ezi-metales.github.io/ebi/>.** La URL anterior
+>   (`/EBI-Frontend/`) sigue funcionando: redirige a la nueva conservando el hash, así que
+>   un marcador a `#/balance-score-card` no se rompe.
+> - **Se publica solo.** Un workflow construye y publica al hacer `push` a `main`; ya no
+>   hay que correr `npm run deploy` a mano — esa era la razón por la que este sitio se
+>   quedó diez meses sin actualizarse, con el Balance Score Card ya escrito y sin llegar
+>   a nadie.
+> - **Por qué se unificó:** decisión P-6 del plan `ebi-portal` del workspace. El backend
+>   no estaba en ningún repositorio, así que un cambio del portal se repartía entre este
+>   repo, el de la base y un App Service sin control de código fuente.
+>
+> Lo de abajo se conserva como estaba y **ya no se mantiene**.
+
+---
+
 # EBI-web-legacy
 
 Frontend de EBI (React 18 + MUI 7 + Vite 6, `HashRouter`), desplegado en GitHub Pages.
