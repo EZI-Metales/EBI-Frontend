@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Router EBI</title>
-    <script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.22.1/dist/powerbi.min.js"></script>
-    
-    <!-- GitHub Pages SPA redirect script -->
+    <meta charset="utf-8" />
+    <title>El portal EBI se mudó</title>
+    <link rel="canonical" href="https://ezi-metales.github.io/ebi/" />
     <script>
-      // Restaura la ruta desde el query parameter que viene de 404.html
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      }(window.location))
+      // El portal vive ahora en /ebi/ (repo EZI-Metales/ebi, plan ebi-portal,
+      // decision P-6 del 2026-09-18). Se conserva el hash y el query, para que
+      // un enlace profundo --/EBI-Frontend/#/balance-score-card-- siga llevando
+      // a donde llevaba.
+      (function () {
+        var l = window.location;
+        l.replace("https://ezi-metales.github.io/ebi/" + l.search + l.hash);
+      })();
     </script>
-    <script type="module" crossorigin src="/EBI-Frontend/assets/index-BuP2Hbf7.js"></script>
-    <link rel="stylesheet" crossorigin href="/EBI-Frontend/assets/index-B-q979lf.css">
+    <meta http-equiv="refresh" content="3;url=https://ezi-metales.github.io/ebi/" />
+    <style>
+      body { font-family: Montserrat, system-ui, sans-serif; background: #f4f4f4;
+             color: #373a36; display: grid; place-items: center; height: 100vh; margin: 0; }
+      main { text-align: center; max-width: 34rem; padding: 2rem; }
+      a { color: #ff5c35; font-weight: 600; }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <main>
+      <h1>El portal EBI se mudó</h1>
+      <p>Ahora vive en <a href="https://ezi-metales.github.io/ebi/">ezi-metales.github.io/ebi</a>.
+         Si no te lleva solo en un segundo, entra por ese enlace y actualiza tu marcador.</p>
+    </main>
   </body>
 </html>
