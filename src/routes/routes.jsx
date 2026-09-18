@@ -11,6 +11,7 @@ import LoginPage from "@pages/Login";
 // Protected Pages
 import HomePage from "@/pages/Home";
 import TestPage from "@pages/Test";
+import BalanceScoreCardPage from "@pages/BalanceScoreCard";
 import NotFoundPage from "@pages/NotFound";
 
 const AppRoutes = () => {
@@ -31,6 +32,7 @@ const AppRoutes = () => {
         
         {/* Rutas estáticas */}
         <Route path="/inicio" element={<HomePage />} />
+        <Route path="/balance-score-card" element={<BalanceScoreCardPage />} />
         <Route path="/test" element={<TestPage />} />
         
         {/* Rutas dinámicas generadas desde el menú */}
